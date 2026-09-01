@@ -1,0 +1,47 @@
+name: test
+
+# Tap CI (rootle pattern): style + audit + build-from-source + formula
+# test, on macOS (arm64) and Linux. Weekly cron catches bit rot (new
+# rust/brew releases breaking the source build) even with no pushes.
+# Inert until the first release writes Formula/strop.rb — the audit and
+# install steps skip cleanly while no formula exists.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Tap this repo locally
+        run: |
+          tapdir="$(brew --repository stropdev/tap)"
+          mkdir -p "$(dirname "$tapdir")"
+          ln -sfn "$PWD" "$tapdir"
+          brew tap | grep stropdev/tap
+
+      - name: Style
+        run: brew style stropdev/tap
+
+      - name: Audit
+        if: hashFiles('Formula/strop.rb') != ''
+        run: brew audit --new --formula stropdev/tap/strop
+
+      - name: Install from source
+        if: hashFiles('Formula/strop.rb') != ''
+        run: brew install --verbose --build-from-source stropdev/tap/strop
+
+      - name: Test
+        if: hashFiles('Formula/strop.rb') != ''
+        run: brew test stropdev/tap/strop

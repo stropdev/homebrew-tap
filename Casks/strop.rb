@@ -1,9 +1,9 @@
 cask "strop" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.10.3"
-  sha256 arm:   "80b7d0c3abca5a906f5fa4dee20d8f9a3f5d331c8f6ba61b88b78cc78d5343ab",
-         intel: "c90c70aa704580dd5c829d11d81d9fc5174f40ada5e8fc76043af489b577e458"
+  version "0.11.0"
+  sha256 arm:   "13e3d79e48d9a20f369e7889544afc6d768297fbe4303d6248ddf7849769c80a",
+         intel: "9aab424a2f65213758208991c81859df8115f6b11f52032ba3edabd04ce15551"
 
   url "https://github.com/stropdev/strop/releases/download/v#{version}/strop-#{version}-#{arch}-apple-darwin.tar.gz"
   name "strop"

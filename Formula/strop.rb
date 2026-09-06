@@ -1,8 +1,8 @@
 class Strop < Formula
   desc "Modal text editor — see the cut before you make it"
   homepage "https://strop.dev/"
-  url "https://static.crates.io/crates/strop-editor/strop-editor-0.9.2.crate"
-  sha256 "f02b1359e858a59e0307c17fb3edf71f835322eaa705ac154aad3db9247f0fb7"
+  url "https://static.crates.io/crates/strop-editor/strop-editor-0.10.0.crate"
+  sha256 "cd9d2be701329ef6e431718e1c770ef14cc49957f20ff6f7fb4a3b92f4d65276"
   license "MIT"
 
   depends_on "rust" => :build

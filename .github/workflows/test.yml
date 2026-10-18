@@ -1,7 +1,7 @@
 name: test
 
 # Tap CI (rootle pattern): style + audit + build-from-source + formula
-# test, on macOS (arm64) and Linux. Weekly cron catches bit rot (new
+# test, on Linux x86_64 only. Weekly cron catches bit rot (new
 # rust/brew releases breaking the source build) even with no pushes.
 # Inert until the first release writes Formula/strop.rb — the audit and
 # install steps skip cleanly while no formula exists.
@@ -14,11 +14,7 @@ on:
 
 jobs:
   test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
 

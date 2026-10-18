@@ -6,9 +6,8 @@ class Strop < Formula
   license "MIT"
 
   depends_on "rust" => :build
-  on_macos do
-    depends_on arch: :arm64
-  end
+  depends_on :linux
+  depends_on arch: :x86_64
 
   def install
     system "cargo", "install", *std_cargo_args

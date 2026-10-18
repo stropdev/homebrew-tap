@@ -3,11 +3,22 @@
 Homebrew tap for [strop](https://strop.dev) — the modal text editor
 (`github.com/stropdev/strop`).
 
-- `Formula/strop.rb` — builds from the crates.io source crate (`strop-editor`; Linux
-  brew / source people). Written by the release workflow (plan 0002 §5).
-- `Casks/strop.rb` — prebuilt per-arch macOS binaries from the GitHub release tarballs
-  (no Rust toolchain on the user's machine). Written by the same release step.
+Current support is **Linux x86_64 only**, including Linux x86_64 distributions
+inside WSL. Install and run Homebrew and Strop inside Linux:
 
-Both land at the first release; this scaffold exists so the release workflow has
-somewhere to push. CI (`test.yml`) activates with the formula — style, audit,
-build-from-source, `brew test`, on macOS and Linux, weekly cron against bit rot.
+```sh
+brew install stropdev/tap/strop
+```
+
+`Formula/strop.rb` builds the published `strop-editor` crate from source and is
+maintained by Strop's release workflow (plan 0002 §5). Source builds also require
+Zig 0.16.0 for the pinned terminal emulator; this policy change does not claim
+that a fresh formula build has been qualified.
+
+macOS, ARM/aarch64 (including ARM WSL) and native Windows are unsupported.
+The macOS cask is retired. Expansion requires an explicit support decision and
+fresh target-specific qualification. Historical releases and checksums are
+unchanged; they do not certify changed source.
+
+CI (`test.yml`) retains formula style, audit, build and `brew test` obligations
+on Linux x86_64. No publish or deployment is performed by this policy update.

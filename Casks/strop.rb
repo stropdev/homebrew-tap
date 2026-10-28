@@ -1,6 +1,6 @@
 cask "strop" do
-  version "0.46.2"
-  sha256 "18430ac9e2389fe9dab4b68fb0c0357125288f6276c8e5a840429d5f5938cdb3"
+  version "0.46.3"
+  sha256 "5cc249d05ea9276e9075e8ad77d0c63db3ce389c0243392f73a1954b0f2b912a"
 
   url "https://github.com/stropdev/strop/releases/download/v#{version}/strop-#{version}-aarch64-apple-darwin.tar.gz"
   name "strop"
